@@ -38,10 +38,10 @@ describe("leNFTSDK", () => {
     expect(typeof nftLP == "bigint").toBeTruthy();
   }, 20000);
 
-  //   it("gets price correctly", async () => {
-  //     const poolAddress = "0xb2FD99528Ce8f7a6AecFC24c286e63E9D19f06F1";
+  it("gets price correctly", async () => {
+    const pool = "0xb2FD99528Ce8f7a6AecFC24c286e63E9D19f06F1";
 
-  //     // We're only testing if the function executes without error
-  //     await expect(sdk.getPrice(poolAddress)).resolves.toBeDefined();
-  //   });
+    // We're only testing if the function executes without error
+    await expect(sdk.getPrice(pool)).resolves.toBeDefined();
+  }, 20000);
 });

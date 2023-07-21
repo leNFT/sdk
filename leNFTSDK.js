@@ -76,16 +76,16 @@ class leNFT {
   }
 
   async getPrice(pool) {
-    const requestURL = this.tradeRouter + "/price?pool=";
-    pool + "&chainId=" + this.chainId;
+    const requestURL =
+      this.tradeRouter + "/price?pool=" + pool + "&chainId=" + this.chainId;
+
+    console.log("requestURL", requestURL);
 
     const priceResponse = await axios
       .get(requestURL, this.fetchOptions)
       .catch((err) => console.error(err));
 
-    const price = await priceResponse.json();
-
-    return price;
+    return priceResponse.data;
   }
 
   async getBuyQuote(amount, pool) {
