@@ -6,8 +6,15 @@
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "lenft",
+    "sdk",
+    "nft",
+    "liquidity",
+    "ethereum",
+    "erc721"
+  ],
+  "author": "leNFT Developers",
   "license": "ISC",
   "dependencies": {
     "@ethersproject/bignumber": "^5.7.0",
