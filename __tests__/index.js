@@ -1,4 +1,4 @@
-const leNFT = require("../leNFTSDK.js");
+const leNFT = require("../index.js");
 const ethers = require("ethers");
 
 describe("leNFTSDK", () => {

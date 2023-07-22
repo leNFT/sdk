@@ -2,7 +2,7 @@
   "name": "lenft-sdk",
   "version": "1.0.1",
   "description": "Allows using leNFT as a backend for NFT liquidity.",
-  "main": "leNFTSDK.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
@@ -19,7 +19,7 @@
     "type": "git",
     "url": "https://github.com/leNFT/sdk.git"
   },
-  "homepage": "https://lenft.fi/",
+  "homepage": "https://lenft.fi",
   "author": "leNFT Developers",
   "license": "ISC",
   "dependencies": {
