@@ -6,10 +6,9 @@ const TradingPoolFactoryABI = require("./contracts/TradingPoolFactory.json");
 const TradingPoolABI = require("./contracts/TradingPool.json");
 
 class leNFT {
-  constructor(provider, wallet = ethers.Wallet.createRandom(), chainId = 1) {
+  constructor(provider, chainId = 1) {
     this.provider = provider;
     this.chainId = chainId;
-    this.wallet = wallet;
     this.tradeRouter = "https://trade-router-absrz.ondigitalocean.app";
     this.api = "https://api-h6nqa.ondigitalocean.app";
     this.fetchOptions = {
@@ -72,7 +71,7 @@ class leNFT {
 
     const nftLP = await poolContract.nftToLp(nftId);
 
-    return nftLP;
+    return nftLP.toString();
   }
 
   async getPrice(pool) {
@@ -113,7 +112,7 @@ class leNFT {
       nfts +
       "&pool=" +
       pool +
-      "&this.chainId=" +
+      "&chainId=" +
       this.chainId;
 
     const buyExactQuoteResponse = await axios
@@ -147,7 +146,7 @@ class leNFT {
     const poolContract = new ethers.Contract(
       pool,
       TradingPoolABI.abi,
-      this.wallet
+      this.provider.getSigner()
     );
 
     // Make sure you have enough allowance to spend on behalf of the buyer.
@@ -173,7 +172,7 @@ class leNFT {
     const poolContract = new ethers.Contract(
       pool,
       TradingPoolABI.abi,
-      this.wallet
+      this.provider.getSigner()
     );
 
     // Make sure you have enough allowance to spend on behalf of the seller.
