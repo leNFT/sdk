@@ -100,7 +100,7 @@ class leNFT {
     const buyQuoteResponse = await axios
       .get(requestURL, this.fetchOptions)
       .catch((err) => console.error(err));
-    const buyQuote = await buyQuoteResponse.json();
+    const buyQuote = buyQuoteResponse.data;
 
     return buyQuote;
   }
@@ -118,7 +118,7 @@ class leNFT {
     const buyExactQuoteResponse = await axios
       .get(requestURL, this.fetchOptions)
       .catch((err) => console.error(err));
-    const buyExactQuote = await buyExactQuoteResponse.json();
+    const buyExactQuote = buyExactQuoteResponse.data;
 
     return buyExactQuote;
   }
@@ -136,7 +136,7 @@ class leNFT {
     const sellQuoteResponse = await axios
       .get(requestURL, this.fetchOptions)
       .catch((err) => console.error(err));
-    const sellQuote = await sellQuoteResponse.json();
+    const sellQuote = sellQuoteResponse.data;
 
     return sellQuote;
   }
@@ -146,7 +146,7 @@ class leNFT {
     const poolContract = new ethers.Contract(
       pool,
       TradingPoolABI.abi,
-      this.provider.getSigner()
+      await this.provider.getSigner()
     );
 
     // Make sure you have enough allowance to spend on behalf of the buyer.
@@ -172,7 +172,7 @@ class leNFT {
     const poolContract = new ethers.Contract(
       pool,
       TradingPoolABI.abi,
-      this.provider.getSigner()
+      await this.provider.getSigner()
     );
 
     // Make sure you have enough allowance to spend on behalf of the seller.
