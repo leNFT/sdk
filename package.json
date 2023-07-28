@@ -1,6 +1,6 @@
 {
   "name": "lenft-sdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Allows using leNFT as a backend for NFT liquidity.",
   "main": "index.js",
   "scripts": {

@@ -4,6 +4,7 @@ const axios = require("axios");
 // Import the ABIs
 const TradingPoolFactoryABI = require("./contracts/TradingPoolFactory.json");
 const TradingPoolABI = require("./contracts/TradingPool.json");
+const WETHGatewayABI = require("./contracts/WETHGateway.json");
 
 class leNFT {
   constructor(provider, chainId = 1) {
@@ -145,7 +146,7 @@ class leNFT {
     // Create a new contract instance for the pool
     const poolContract = new ethers.Contract(
       pool,
-      TradingPoolABI.abi,
+      WETHGatewayABI.abi,
       await this.provider.getSigner()
     );
 
@@ -171,7 +172,7 @@ class leNFT {
     // Create a new contract instance for the pool
     const poolContract = new ethers.Contract(
       pool,
-      TradingPoolABI.abi,
+      WETHGatewayABI.abi,
       await this.provider.getSigner()
     );
 
