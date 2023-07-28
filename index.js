@@ -5,6 +5,7 @@ const axios = require("axios");
 const TradingPoolFactoryABI = require("./contracts/TradingPoolFactory.json");
 const TradingPoolABI = require("./contracts/TradingPool.json");
 const WETHGatewayABI = require("./contracts/WETHGateway.json");
+const WETHGatewayAddress = "0x71aC14aa94a28dBA682F5E6185765B32566f3802";
 
 class leNFT {
   constructor(provider, chainId = 1) {
@@ -142,20 +143,18 @@ class leNFT {
     return sellQuote;
   }
 
-  async buy(pool, onBehalfOf, nftIds, maximumPrice) {
+  async buy(pool, nftIds, maximumPrice) {
     // Create a new contract instance for the pool
-    const poolContract = new ethers.Contract(
-      pool,
+    const wethGatewayContract = new ethers.Contract(
+      WETHGatewayAddress,
       WETHGatewayABI.abi,
       await this.provider.getSigner()
     );
 
-    // Make sure you have enough allowance to spend on behalf of the buyer.
-    // If not, you will need to first call the approve() function on the token contract.
-    // You might also need to adjust the gasLimit and gasPrice values.
-
     // Execute the buy function
-    const buyTx = await poolContract.buy(onBehalfOf, nftIds, maximumPrice);
+    const buyTx = await wethGatewayContract.buy(pool, nftIds, maximumPrice, {
+      value: maximumPrice,
+    });
 
     // Wait for the transaction to be mined
     const receipt = await buyTx.wait();
@@ -168,10 +167,10 @@ class leNFT {
     return finalPrice;
   }
 
-  async sell(pool, onBehalfOf, nftIds, liquidityPairs, minimumPrice) {
+  async sell(pool, nftIds, liquidityPairs, minimumPrice) {
     // Create a new contract instance for the pool
-    const poolContract = new ethers.Contract(
-      pool,
+    const wethGatewayContract = new ethers.Contract(
+      WETHGatewayAddress,
       WETHGatewayABI.abi,
       await this.provider.getSigner()
     );
@@ -181,8 +180,8 @@ class leNFT {
     // You might also need to adjust the gasLimit and gasPrice values.
 
     // Execute the sell function
-    const sellTx = await poolContract.sell(
-      onBehalfOf,
+    const sellTx = await wethGatewayContract.sell(
+      pool,
       nftIds,
       liquidityPairs,
       minimumPrice
